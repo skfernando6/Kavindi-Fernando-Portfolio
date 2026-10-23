@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kavindi Fernando — QA Portfolio</title>
+<style>
+:root {
+  --site-primary: #163b35;
+  --site-on-primary: #ffffff;
+  --site-secondary: #d8f16a;
+  --site-on-secondary: #172c25;
+  --site-background: #f5f6f0;
+  --site-on-background: #172c25;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  color-scheme: light dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--site-font-body); background: light-dark(#f5f6f0,#111b18); color: light-dark(#172c25,#edf4e9); }
+#app { min-height: 100vh; width: 100%; border-radius: 0; background-color: var(--site-background); color: var(--site-on-background); overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+button, a { -webkit-tap-highlight-color: transparent; }
+.wrap { width: min(1120px, calc(100% - 44px)); margin: 0 auto; }
+.nav { display:flex; align-items:center; justify-content:space-between; padding:24px 0; gap:20px; }
+.logo { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:-.04em; }
+.logo-mark { width:35px;height:35px;border-radius:11px;background:var(--site-primary);color:var(--site-on-primary);display:grid;place-items:center;font-size:14px; }
+.navlinks { display:flex; gap:25px; align-items:center; font-size:13px; font-weight:650; color:light-dark(#53645d,#b8c7bf); }
+.navlinks a:hover { color:var(--site-primary); }
+.nav-cta,.button { display:inline-flex; align-items:center; justify-content:center; gap:9px; background:var(--site-primary); color:var(--site-on-primary); border:1px solid var(--site-primary); border-radius:999px; padding:13px 19px; font-weight:750; font-size:13px; transition:transform .18s, opacity .18s; }
+.button:hover,.nav-cta:hover { transform:translateY(-2px); opacity:.92; }
+.button.secondary { background:transparent; color:var(--site-on-background); border-color:light-dark(#cbd3c8,#3b4b43); }
+.hero { position:relative; display:grid; grid-template-columns:1.15fr .85fr; gap:52px; align-items:center; padding:76px 0 92px; }
+.eyebrow { display:inline-flex; align-items:center; gap:9px; text-transform:uppercase; letter-spacing:.13em; font-size:10px; font-weight:850; color:light-dark(#50675a,#b6d26d); }
+.dot { width:7px;height:7px;border-radius:50%;background:#8aaf39;box-shadow:0 0 0 4px #8aaf3922; }
+h1,h2,h3,p { margin-top:0; }
+h1 { font-family:var(--site-font-heading); font-size:calc(clamp(46px, 6.2vw, 78px) * var(--site-heading-scale)); letter-spacing:-.075em; line-height:.99; margin:23px 0 24px; max-width:680px; }
+h1 span { color:light-dark(#69863b,#c3e56c); }
+.lede { color:light-dark(#5a6960,#c0ccc3); font-size:17px; line-height:1.8; max-width:550px; margin-bottom:30px; }
+.actions { display:flex; flex-wrap:wrap; gap:11px; }
+.meta-row { display:flex; flex-wrap:wrap; gap:18px; margin-top:30px; color:light-dark(#68766d,#aebdb3); font-size:12px; }
+.meta-row span { display:flex;align-items:center;gap:7px; }
+.hero-art { min-height:405px; border-radius:30px; background:var(--site-primary); color:#f5f8ed; padding:27px; position:relative; overflow:hidden; box-shadow:0 24px 60px #163b351c; }
+.hero-art:before { content:""; position:absolute; width:290px;height:290px;border-radius:50%;background:var(--site-secondary);right:-92px;top:-80px;opacity:var(--site-decoration-opacity); }
+.art-top { display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;font-size:11px;color:#c8d5cc; }
+.art-code { font-family:ui-monospace, SFMono-Regular, Menlo, monospace; background:#ffffff0d; border:1px solid #ffffff22; border-radius:18px; padding:20px; margin-top:58px; position:relative; z-index:1; backdrop-filter:blur(8px); }
+.code-line { display:flex;gap:16px;padding:8px 0;font-size:12px;line-height:1.4; }
+.line-no { color:#8da99a; width:14px; }
+.green { color:#d8f16a; }.muted { color:#a5b8ad; }.pink { color:#ffb4a5; }
+.pass-card { display:flex; align-items:center; justify-content:space-between; gap:15px; padding:15px 17px; margin-top:17px; border-radius:15px; background:#ffffff12; border:1px solid #ffffff1d; position:relative;z-index:1; }
+.pass-left { display:flex;align-items:center;gap:11px;font-size:12px;font-weight:700; }
+.check { width:30px;height:30px;display:grid;place-items:center;border-radius:10px;background:var(--site-secondary);color:#17362d;font-weight:900; }
+.pass-pill { color:#d8f16a;font-size:10px;font-weight:850;letter-spacing:.1em; }
+.section { padding:83px 0; }
+.section.alt { background:light-dark(#ecefe5,#17231e); }
+.section-head { display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:35px; }
+.kicker { color:light-dark(#718a40,#c4e96c);font-size:11px;font-weight:850;letter-spacing:.15em;text-transform:uppercase;margin-bottom:13px; }
+h2 { font-size:calc(clamp(30px,4vw,47px) * var(--site-heading-scale)); letter-spacing:-.06em;line-height:1.05;margin-bottom:0; }
+.section-desc { max-width:380px;color:light-dark(#68756b,#bdc9c0);font-size:14px;line-height:1.75;margin:0; }
+.stats { display:grid;grid-template-columns:repeat(4,1fr);border:1px solid light-dark(#d7ded2,#35463c);border-radius:20px;overflow:hidden; }
+.stat { padding:25px 22px;border-right:1px solid light-dark(#d7ded2,#35463c); }
+.stat:last-child { border-right:0; }
+.stat strong { display:block;font-size:27px;letter-spacing:-.05em;margin-bottom:5px; }
+.stat span { font-size:11px;color:light-dark(#6b786e,#a9b9ae);line-height:1.5; }
+.grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px; }
+.project { border:1px solid light-dark(#dce2d8,#34453b);border-radius:23px;padding:25px;background:light-dark(#fbfcf8,#1b2922);display:flex;flex-direction:column;min-height:300px;transition:transform .2s,border-color .2s; }
+.project:hover { transform:translateY(-4px);border-color:#8da95b; }
+.project-top { display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:27px; }
+.project-icon { width:45px;height:45px;border-radius:14px;background:light-dark(#e6edd7,#31432e);display:grid;place-items:center;font-size:20px; }
+.tag { font-size:10px;font-weight:800;padding:7px 10px;border-radius:999px;background:light-dark(#edf1e6,#2b3b31);color:light-dark(#4c6636,#d1e9a1); }
+.project h3 { font-size:22px;letter-spacing:-.045em;margin-bottom:10px; }
+.project p { color:light-dark(#68756b,#b9c6bd);font-size:13px;line-height:1.7;margin-bottom:19px; }
+.chips { display:flex;flex-wrap:wrap;gap:7px;margin-top:auto; }
+.chip { border:1px solid light-dark(#dce2d8,#3b4a41);border-radius:8px;padding:7px 9px;font-size:10px;color:light-dark(#59675d,#c4d0c6); }
+.project-link { display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:800;margin-top:22px;color:light-dark(#3c5932,#c5e66b); }
+.split { display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start; }
+.sticky-intro { position:sticky;top:25px; }
+.sticky-intro p { color:light-dark(#68756b,#b9c6bd);line-height:1.8;font-size:14px;margin-top:22px; }
+.skill-groups { display:grid;gap:13px; }
+.skill-group { padding:21px;border:1px solid light-dark(#dce2d8,#34453b);border-radius:17px; }
+.skill-group h3 { font-size:14px;margin-bottom:14px; }
+.skill-group .chips { margin-top:0; }
+.timeline { border-left:1px solid light-dark(#cbd6c4,#3b4b40);margin-left:8px;padding-left:26px;display:grid;gap:30px; }
+.timeline-item { position:relative; }
+.timeline-item:before { content:"";position:absolute;width:11px;height:11px;border-radius:50%;background:var(--site-secondary);border:3px solid var(--site-background);left:-33px;top:3px;box-shadow:0 0 0 1px light-dark(#a9ba9b,#52634c); }
+.timeline-date { font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:850;color:light-dark(#6d853d,#c6e96d);margin-bottom:8px; }
+.timeline-item h3 { font-size:18px;margin-bottom:7px; }
+.timeline-item p { font-size:13px;line-height:1.75;color:light-dark(#68756b,#b9c6bd);margin-bottom:0; }
+.callout { background:var(--site-primary);color:#f5f8ed;border-radius:26px;padding:clamp(28px,5vw,55px);display:flex;align-items:center;justify-content:space-between;gap:30px;position:relative;overflow:hidden; }
+.callout:after { content:"";position:absolute;width:200px;height:200px;border-radius:50%;background:var(--site-secondary);right:18%;bottom:-150px;opacity:.15; }
+.callout h2 { max-width:580px;position:relative;z-index:1; }
+.callout p { color:#c2d0c6;font-size:14px;line-height:1.7;margin:16px 0 0;max-width:540px;position:relative;z-index:1; }
+.callout .button { background:var(--site-secondary);border-color:var(--site-secondary);color:var(--site-on-secondary);white-space:nowrap;position:relative;z-index:1; }
+footer { padding:28px 0 38px;display:flex;justify-content:space-between;gap:20px;color:light-dark(#6b786e,#a9b9ae);font-size:11px; }
+.disclaimer { border:1px dashed light-dark(#b8c7ac,#50634e);border-radius:12px;padding:13px 15px;color:light-dark(#68756b,#bdc9c0);font-size:11px;line-height:1.65;margin-top:20px; }
+.qa-lab { margin-top:28px;border:1px solid light-dark(#d7ded2,#35463c);border-radius:24px;overflow:hidden;background:light-dark(#fbfcf8,#1b2922); }
+.qa-lab-head { background:var(--site-primary);color:#f5f8ed;padding:28px;display:flex;justify-content:space-between;gap:20px;align-items:flex-start; }
+.qa-lab-head h3 { font-size:clamp(23px,3vw,32px);letter-spacing:-.05em;margin:10px 0; }
+.qa-lab-head p { color:#c8d5cc;font-size:13px;line-height:1.7;max-width:650px;margin:0; }
+.lab-status { display:inline-flex;align-items:center;gap:7px;background:#ffffff16;border:1px solid #ffffff2a;padding:8px 11px;border-radius:999px;font-size:10px;font-weight:800;white-space:nowrap; }
+.lab-content { padding:25px; }
+.lab-tabs { display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px; }
+.lab-tab { appearance:none;border:1px solid light-dark(#d7ded2,#35463c);background:transparent;color:var(--site-on-background);border-radius:999px;padding:10px 14px;font:inherit;font-size:11px;font-weight:800;cursor:pointer; }
+.lab-tab[aria-selected="true"] { background:var(--site-primary);border-color:var(--site-primary);color:var(--site-on-primary); }
+.lab-panel h4 { font-size:18px;margin:0 0 10px;letter-spacing:-.03em; }
+.lab-panel p { font-size:13px;line-height:1.75;color:light-dark(#68756b,#b9c6bd); }
+.lab-table-wrap { overflow-x:auto;border:1px solid light-dark(#dce2d8,#34453b);border-radius:14px;margin:16px 0 20px; }
+.lab-table { border-collapse:collapse;width:100%;min-width:680px;font-size:11px;line-height:1.6; }
+.lab-table th { text-align:left;background:light-dark(#edf1e6,#2b3b31);font-size:10px;text-transform:uppercase;letter-spacing:.06em; }
+.lab-table th,.lab-table td { padding:12px 13px;border-bottom:1px solid light-dark(#dce2d8,#34453b);vertical-align:top; }
+.lab-table tr:last-child td { border-bottom:0; }
+.priority { display:inline-block;border-radius:6px;padding:4px 7px;font-size:9px;font-weight:850;background:light-dark(#f8e7d7,#493426);color:light-dark(#8c4818,#ffd1a4); }
+.priority.high { background:light-dark(#f7dddd,#4b2929);color:light-dark(#a32929,#ffb5b5); }
+.lab-note { border-left:3px solid #91ad4a;padding:11px 14px;background:light-dark(#f0f4e7,#233126);font-size:11px;line-height:1.7;color:light-dark(#53634e,#d0dccb);margin-top:16px; }
+.lab-actions { display:flex;gap:10px;flex-wrap:wrap;margin-top:18px; }
+.lab-actions button { cursor:pointer;font:inherit; }
+.lab-output { white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid light-dark(#dce2d8,#34453b);border-radius:12px;padding:15px;background:light-dark(#f3f5ef,#142019);font:11px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--site-on-background); }
+@media(max-width:650px){.qa-lab-head{flex-direction:column;padding:22px}.lab-content{padding:17px}}
+@media(max-width:800px){.navlinks{display:none}.hero{grid-template-columns:1fr;gap:35px;padding:54px 0 65px}.hero-art{min-height:365px}.section{padding:62px 0}.section-head{align-items:start;flex-direction:column}.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid light-dark(#d7ded2,#35463c)}.grid{grid-template-columns:1fr}.split{grid-template-columns:1fr;gap:30px}.sticky-intro{position:static}.callout{align-items:flex-start;flex-direction:column}.callout .button{white-space:normal} }
+@media(max-width:480px){.wrap{width:min(100% - 30px,1120px)}.nav{padding:17px 0}.nav-cta{padding:11px 14px;font-size:11px}.hero{padding-top:42px}h1{font-size:47px}.lede{font-size:15px}.hero-art{padding:19px;min-height:345px}.art-code{padding:13px;margin-top:53px}.code-line{font-size:10px;gap:10px}.stat{padding:20px 15px}.stat strong{font-size:23px}.project{padding:20px}.section{padding:54px 0}footer{flex-direction:column} }
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="wrap nav">
+    <a class="logo" href="#home" aria-label="Kavindi Fernando home"><span class="logo-mark">KF</span><span>Kavindi Fernando<span style="color:#8aa94d">.</span></span></a>
+    <nav class="navlinks" aria-label="Main navigation"><a href="#work">Projects</a><a href="#skills">Skills</a><a href="#journey">Experience</a><a href="#contact">Contact</a></nav>
+    <a class="nav-cta" href="#contact">Let’s connect <span aria-hidden="true">↗</span></a>
+  </header>
+  <main>
+    <section class="wrap hero" id="home">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> QA ENGINEER · TESTING MINDSET</div>
+        <h1>Quality is not a step.<br>It’s the <span>standard.</span></h1>
+        <p class="lede">I’m Kavindi Fernando, an Information Technology graduate with hands-on RPA experience and a growing focus on software quality assurance. I enjoy finding edge cases, understanding how systems behave, and helping teams ship reliable products.</p>
+        <div class="actions"><a class="button" href="#work">Explore my QA work <span>↘</span></a><a class="button secondary" href="#contact">Contact me <span>↗</span></a></div>
+        <div class="meta-row"><span><span class="dot"></span> Open to paid QA opportunities</span><span>⌁ Sri Lanka · Remote / Hybrid / On-site</span></div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a software test report">
+        <div class="art-top"><span>QUALITY CHECK / 001</span><span>● LIVE MINDSET</span></div>
+        <div class="art-code">
+          <div class="code-line"><span class="line-no">01</span><span><span class="muted">suite:</span> <span class="green">checkout_flow</span></span></div>
+          <div class="code-line"><span class="line-no">02</span><span><span class="muted">test:</span> <span class="pink">valid_payment_success</span></span></div>
+          <div class="code-line"><span class="line-no">03</span><span><span class="muted">expect:</span> order.status === <span class="green">"confirmed"</span></span></div>
+          <div class="code-line"><span class="line-no">04</span><span><span class="muted">result:</span> <span class="green">PASS ✓</span></span></div>
+          <div class="code-line"><span class="line-no">05</span><span><span class="muted">next:</span> <span class="pink">test_negative_paths()</span></span></div>
+        </div>
+        <div class="pass-card"><div class="pass-left"><span class="check">✓</span><span>Think curious. Test thoroughly.</span></div><span class="pass-pill">QUALITY FIRST</span></div>
+      </div>
+    </section>
+    <section class="section alt">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">A little about my approach</div><h2>Curiosity meets<br>structured testing.</h2></div><p class="section-desc">I bring an automation-aware mindset, practical troubleshooting experience, and a willingness to learn from real defects—not just happy paths.</p></div>
+        <div class="stats">
+          <div class="stat"><strong>08 mo.</strong><span>RPA / UiPath professional experience</span></div>
+          <div class="stat"><strong>BSc (Hons)</strong><span>Information Technology · SLIIT</span></div>
+          <div class="stat"><strong>Manual + API</strong><span>Core QA areas I’m building hands-on</span></div>
+          <div class="stat"><strong>Learn & ship</strong><span>Portfolio-led, practical growth mindset</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="work">
+      <div class="wrap">
+        <div class="section-head"><div><div class="kicker">Selected work</div><h2>Proof of how I test.</h2></div><p class="section-desc">A focused set of QA case studies covering test design, defect communication, API validation and automation thinking.</p></div>
+        <div class="grid">
+          <article class="project"><div class="project-top"><div class="project-icon">⌕</div><span class="tag">CASE STUDY 01</span></div><h3>E-commerce checkout testing</h3><p>Test scenarios for product selection, cart updates, required fields, discounts, payment failures and order confirmation. Includes positive, negative and boundary-value coverage.</p><div class="chips"><span class="chip">Test scenarios</span><span class="chip">Boundary testing</span><span class="chip">Risk-based testing</span></div><a class="project-link" href="#contact" data-project="E-commerce checkout testing">Request test-case sample <span>↗</span></a></article>
+          <article class="project"><div class="project-top"><div class="project-icon">⌘</div><span class="tag">CASE STUDY 02</span></div><h3>REST API validation</h3><p>A practical API test plan for status codes, response schema, required fields, invalid inputs, authentication behaviour and error handling.</p><div class="chips"><span class="chip">Postman</span><span class="chip">HTTP status codes</span><span class="chip">JSON validation</span></div><a class="project-link" href="#contact" data-project="REST API validation">Request API test plan <span>↗</span></a></article>
+          <article class="project"><div class="project-top"><div class="project-icon">⚑</div><span class="tag">CASE STUDY 03</span></div><h3>Bug reports that help teams</h3><p>Sample defect reports structured around reproducible steps, expected vs actual results, severity, environment and evidence—so developers can act quickly.</p><div class="chips"><span class="chip">Defect lifecycle</span><span class="chip">Severity / priority</span><span class="chip">Clear evidence</span></div><a class="project-link" href="#contact" data-project="Bug report examples">Request bug report sample <span>↗</span></a></article>
+          <article class="project"><div class="project-top"><div class="project-icon">⟳</div><span class="tag">CASE STUDY 04</span></div><h3>Automation quality mindset</h3><p>How I approach workflow validation, troubleshooting, exception handling and repeatable checks—connecting my RPA experience to software quality.</p><div class="chips"><span class="chip">UiPath</span><span class="chip">Workflow validation</span><span class="chip">Root-cause thinking</span></div><a class="project-link" href="#journey">See relevant experience <span>↗</span></a></article>
+        </div>
+        <div class="disclaimer"><strong>Portfolio transparency:</strong> These QA case studies are currently presented as demonstration projects, not as client work or completed production engagements. Add real test files, screenshots, bug reports and repository links as each project is completed.</div>
+        <div class="qa-lab" id="ecommerce-lab">
+          <div class="qa-lab-head"><div><div class="eyebrow"><span class="dot"></span> MANUAL QA · HANDS-ON CASE STUDY</div><h3>ShopEase — E-commerce Checkout QA</h3><p>A structured manual-testing project for a fictional online shop. Explore the scope, test scenarios, sample defect reports and execution checklist below.</p></div><span class="lab-status">DEMO PROJECT · IN PROGRESS</span></div>
+          <div class="lab-content">
+            <div class="lab-tabs" role="tablist" aria-label="E-commerce QA case study sections"><button class="lab-tab" type="button" role="tab" id="tab-overview" aria-controls="panel-overview" aria-selected="true" data-lab-tab="overview">01 · Test plan</button><button class="lab-tab" type="button" role="tab" id="tab-cases" aria-controls="panel-cases" aria-selected="false" data-lab-tab="cases">02 · Test cases</button><button class="lab-tab" type="button" role="tab" id="tab-bugs" aria-controls="panel-bugs" aria-selected="false" data-lab-tab="bugs">03 · Sample bug reports</button><button class="lab-tab" type="button" role="tab" id="tab-checklist" aria-controls="panel-checklist" aria-selected="false" data-lab-tab="checklist">04 · Execution checklist</button></div>
+            <section class="lab-panel" id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" data-lab-panel="overview"><h4>Test plan at a glance</h4><p><strong>Objective:</strong> assess whether a customer can select a product, maintain a cart, enter delivery details, apply a valid discount, complete checkout and receive an accurate order confirmation.</p><div class="stats"><div class="stat"><strong>6</strong><span>Core test areas</span></div><div class="stat"><strong>12</strong><span>Designed test cases</span></div><div class="stat"><strong>3</strong><span>Sample defect reports</span></div><div class="stat"><strong>0</strong><span>Execution results claimed</span></div></div><div class="lab-table-wrap"><table class="lab-table"><thead><tr><th>Area</th><th>Coverage</th><th>Risk</th></tr></thead><tbody><tr><td>Product & cart</td><td>Product selection, quantity, remove item, totals</td><td>High</td></tr><tr><td>Checkout form</td><td>Required fields, email format, field validation</td><td>High</td></tr><tr><td>Discount code</td><td>Valid, invalid, expired and minimum-spend rules</td><td>Medium</td></tr><tr><td>Payment</td><td>Successful payment, decline, retry, duplicate submission</td><td>High</td></tr><tr><td>Order confirmation</td><td>Order reference, amount, confirmation message</td><td>High</td></tr><tr><td>Regression & usability</td><td>Back navigation, refresh, error messaging, responsive layout</td><td>Medium</td></tr></tbody></table></div><div class="lab-note"><strong>Scope note:</strong> ShopEase is a fictional application. These are planned test cases and illustrative defects—not verified findings from a live application. Execution status must be updated only after testing a real accessible build.</div></section>
+            <section class="lab-panel" id="panel-cases" role="tabpanel" aria-labelledby="tab-cases" data-lab-panel="cases" hidden><h4>Manual test case catalogue</h4><p>Each case includes a precondition, steps and expected outcome. Results remain Not Run until actually executed.</p><div class="lab-table-wrap"><table class="lab-table"><thead><tr><th>ID / Priority</th><th>Scenario & steps</th><th>Expected result</th><th>Status</th></tr></thead><tbody><tr><td>TC-001 <span class="priority high">High</span></td><td>Open a product, select an available size/variant and add it to cart.</td><td>Correct product and selected variant appear in cart with correct price.</td><td>Not Run</td></tr><tr><td>TC-002 <span class="priority high">High</span></td><td>Increase item quantity from 1 to 2 in the cart.</td><td>Quantity updates and subtotal recalculates accurately.</td><td>Not Run</td></tr><tr><td>TC-003 <span class="priority high">High</span></td><td>Remove an item from the cart.</td><td>Item is removed and totals update; empty-cart state is clear if applicable.</td><td>Not Run</td></tr><tr><td>TC-004 <span class="priority high">High</span></td><td>Proceed to checkout with valid delivery details and a valid email.</td><td>Form accepts valid data and proceeds to the next checkout step.</td><td>Not Run</td></tr><tr><td>TC-005 <span class="priority high">High</span></td><td>Submit checkout with required delivery fields blank.</td><td>Submission is blocked and clear validation appears beside relevant fields.</td><td>Not Run</td></tr><tr><td>TC-006 <span class="priority">Medium</span></td><td>Enter an invalid email format, e.g. user@.</td><td>Helpful validation appears; invalid details are not accepted.</td><td>Not Run</td></tr><tr><td>TC-007 <span class="priority">Medium</span></td><td>Apply a valid discount code meeting its conditions.</td><td>Discount is applied once and the displayed total is correct.</td><td>Not Run</td></tr><tr><td>TC-008 <span class="priority">Medium</span></td><td>Apply an invalid or expired discount code.</td><td>Code is rejected with a clear message; total remains correct.</td><td>Not Run</td></tr><tr><td>TC-009 <span class="priority high">High</span></td><td>Complete checkout using the approved successful test-payment method.</td><td>One order is created with correct items, amount and confirmation reference.</td><td>Not Run</td></tr><tr><td>TC-010 <span class="priority high">High</span></td><td>Simulate a declined payment using the test environment's supported method.</td><td>Failure is communicated, order state is accurate, and retry is possible.</td><td>Not Run</td></tr><tr><td>TC-011 <span class="priority high">High</span></td><td>Click the final Place Order button repeatedly or refresh during submission in a safe test environment.</td><td>No unintended duplicate order or charge is created.</td><td>Not Run</td></tr><tr><td>TC-012 <span class="priority">Medium</span></td><td>Use browser Back from confirmation and revisit order summary.</td><td>Order state and totals remain consistent; no duplicate submission occurs.</td><td>Not Run</td></tr></tbody></table></div><div class="lab-actions"><button class="button" type="button" id="download-cases">Export test cases as CSV ↗</button></div></section>
+            <section class="lab-panel" id="panel-bugs" role="tabpanel" aria-labelledby="tab-bugs" data-lab-panel="bugs" hidden><h4>Illustrative defect reports</h4><p>The following are example report formats and hypothetical defects. Do not represent them as bugs found in a tested application.</p><div class="lab-table-wrap"><table class="lab-table"><thead><tr><th>Bug ID</th><th>Title / severity</th><th>Reproduction & expected vs actual</th></tr></thead><tbody><tr><td>DEMO-BUG-001</td><td><strong>Cart subtotal fails to update after quantity change</strong><br><span class="priority high">High · hypothetical</span></td><td><strong>Steps:</strong> add an item, open cart, change quantity from 1 to 2.<br><strong>Expected:</strong> subtotal equals unit price × quantity.<br><strong>Actual:</strong> example defect scenario: subtotal still shows the original quantity's amount.</td></tr><tr><td>DEMO-BUG-002</td><td><strong>Invalid discount code accepted</strong><br><span class="priority">Medium · hypothetical</span></td><td><strong>Steps:</strong> enter a code that is not configured and apply it.<br><strong>Expected:</strong> code is rejected and total is unchanged.<br><strong>Actual:</strong> example defect scenario: discount appears despite the code being invalid.</td></tr><tr><td>DEMO-BUG-003</td><td><strong>Repeated order submission creates duplicate orders</strong><br><span class="priority high">High · hypothetical</span></td><td><strong>Steps:</strong> in a sandbox, submit once and rapidly click Place Order again.<br><strong>Expected:</strong> one order and one intended payment only.<br><strong>Actual:</strong> example defect scenario: two order references are created for one checkout attempt.</td></tr></tbody></table></div><div class="lab-note"><strong>Good defect report checklist:</strong> concise title, environment/build, preconditions, reproducible steps, expected result, actual result, severity, priority, evidence, and reproducibility rate. Never test duplicate-payment scenarios against a real payment method.</div></section>
+            <section class="lab-panel" id="panel-checklist" role="tabpanel" aria-labelledby="tab-checklist" data-lab-panel="checklist" hidden><h4>Execution & evidence checklist</h4><p>Use this checklist when testing a real demo shop or authorised test build. Checking an item means you have completed that activity—not that the test passed.</p><div id="qa-checklist" class="skill-groups"><label class="skill-group"><input type="checkbox" data-check="1"> Record application URL, browser, device, build/version and date.</label><label class="skill-group"><input type="checkbox" data-check="2"> Confirm test data and safe sandbox payment method.</label><label class="skill-group"><input type="checkbox" data-check="3"> Execute each test case and record Pass / Fail / Blocked / Not Run.</label><label class="skill-group"><input type="checkbox" data-check="4"> Capture screenshots or screen recordings for observed defects.</label><label class="skill-group"><input type="checkbox" data-check="5"> Log reproducible bugs with severity, priority and clear steps.</label><label class="skill-group"><input type="checkbox" data-check="6"> Retest fixes and run relevant regression tests.</label><label class="skill-group"><input type="checkbox" data-check="7"> Summarise execution counts and known risks without inventing metrics.</label></div><div class="lab-actions"><button class="button" type="button" id="download-bugs">Export sample bug reports as CSV ↗</button><button class="button secondary" type="button" id="reset-checklist">Reset checklist</button></div><p id="checklist-progress" aria-live="polite">0 of 7 activities checked.</p></section>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section alt" id="skills">
+      <div class="wrap split">
+        <div class="sticky-intro"><div class="kicker">Skills toolkit</div><h2>Tools are useful.<br>Thinking matters.</h2><p>I’m developing a balanced foundation across manual testing, API checks, data validation and automation, while using my RPA background to think in workflows and exceptions.</p><a class="project-link" href="#contact">Discuss a role with me <span>↗</span></a></div>
+        <div class="skill-groups">
+          <div class="skill-group"><h3>QA fundamentals</h3><div class="chips"><span class="chip">SDLC / STLC</span><span class="chip">Test case design</span><span class="chip">Smoke / regression</span><span class="chip">Boundary values</span><span class="chip">Bug lifecycle</span><span class="chip">Severity & priority</span></div></div>
+          <div class="skill-group"><h3>API & data testing</h3><div class="chips"><span class="chip">Postman — developing</span><span class="chip">REST API concepts</span><span class="chip">HTTP methods</span><span class="chip">JSON</span><span class="chip">SQL fundamentals</span></div></div>
+          <div class="skill-group"><h3>Automation & technical</h3><div class="chips"><span class="chip">UiPath Studio</span><span class="chip">Orchestrator</span><span class="chip">Workflow debugging</span><span class="chip">Selenium — fundamentals</span><span class="chip">Git / GitHub</span></div></div>
+          <div class="skill-group"><h3>Ways of working</h3><div class="chips"><span class="chip">Analytical thinking</span><span class="chip">Clear documentation</span><span class="chip">Troubleshooting</span><span class="chip">Attention to detail</span><span class="chip">Continuous learning</span></div></div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="journey">
+      <div class="wrap split">
+        <div class="sticky-intro"><div class="kicker">My journey</div><h2>Experience that<br>transfers to QA.</h2><p>My RPA work helped me understand how to validate workflows, investigate failures, and make automated processes more reliable. I’m now applying that mindset more directly to software testing.</p></div>
+        <div class="timeline">
+          <div class="timeline-item"><div class="timeline-date">Aug 2025 — Apr 2026</div><h3>Intern Software Engineer — RPA</h3><p>Innobot Health (PVT) LTD · Worked with UiPath Studio and Orchestrator, workflow troubleshooting, validation, deployment/monitoring and exception handling. This experience informs my approach to repeatability and failure analysis.</p></div>
+          <div class="timeline-item"><div class="timeline-date">2025 — 2026</div><h3>Final-year research project</h3><p>AI-Driven Interactive Sinhala Learning Platform for Primary Education · SLIIT. Worked around a software project involving React Native (Expo), Python, Flask and REST APIs.</p></div>
+          <div class="timeline-item"><div class="timeline-date">Sep 2026</div><h3>BSc (Hons) in Information Technology</h3><p>Faculty of Computing · Sri Lanka Institute of Information Technology (SLIIT).</p></div>
+        </div>
+      </div>
+    </section>
+    <section class="section alt" id="contact">
+      <div class="wrap"><div class="callout"><div><div class="kicker">Your next QA teammate?</div><h2>Let’s make software more reliable.</h2><p>I’m interested in paid QA Intern, Trainee QA, Junior QA and Associate QA opportunities where I can contribute, learn from a team and grow into automation testing.</p></div><div class="actions"><a class="button" href="mailto:kavindifernandof@gmail.com?subject=QA%20Opportunity%20-%20Kavindi%20Fernando">Email me ↗</a><a class="button secondary" style="border-color:#ffffff55;color:#fff" href="https://www.linkedin.com/in/kavindi-fernando-6560b9317/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div></div>
+      <footer><span>© 2026 Kavindi Fernando · QA Portfolio</span><span>Built with curiosity, checked with care.</span></footer></div>
+    </section>
+  </main>
+</div>
+<script>
+document.querySelectorAll('[data-project]').forEach(function(link){
+  link.addEventListener('click', function(){
+    var project = link.getAttribute('data-project');
+    var subject = encodeURIComponent('QA portfolio sample request: ' + project);
+    var body = encodeURIComponent('Hi Kavindi, I viewed your QA portfolio and would like to see the sample for: ' + project + '.');
+    link.setAttribute('href', 'mailto:kavindifernandof@gmail.com?subject=' + subject + '&body=' + body);
+  });
+});
+document.querySelectorAll('[data-lab-tab]').forEach(function(tab){
+  tab.addEventListener('click', function(){
+    var selected = tab.getAttribute('data-lab-tab');
+    document.querySelectorAll('[data-lab-tab]').forEach(function(item){ item.setAttribute('aria-selected', String(item === tab)); });
+    document.querySelectorAll('[data-lab-panel]').forEach(function(panel){ panel.hidden = panel.getAttribute('data-lab-panel') !== selected; });
+  });
+});
+function downloadCsv(filename, rows) {
+  var csv = rows.map(function(row){ return row.map(function(value){ return '"' + String(value).replace(/"/g, '""') + '"'; }).join(','); }).join('\r\n');
+  var blob = new Blob(['\ufeff' + csv], {type:'text/csv;charset=utf-8;'});
+  var url = URL.createObjectURL(blob);
+  var anchor = document.createElement('a'); anchor.href = url; anchor.download = filename; document.body.appendChild(anchor); anchor.click(); anchor.remove(); URL.revokeObjectURL(url);
+}
+var caseRows = [
+  ['Test Case ID','Priority','Scenario / Steps','Expected Result','Execution Status'],
+  ['TC-001','High','Select product variant and add to cart','Correct product, variant and price appear','Not Run'],
+  ['TC-002','High','Change cart quantity from 1 to 2','Quantity and subtotal update correctly','Not Run'],
+  ['TC-003','High','Remove item from cart','Item is removed and totals recalculate','Not Run'],
+  ['TC-004','High','Submit valid delivery details and email','Form accepts valid data and proceeds','Not Run'],
+  ['TC-005','High','Submit with required fields blank','Submission blocked with clear validation','Not Run'],
+  ['TC-006','Medium','Enter invalid email format user@','Invalid email is rejected with helpful validation','Not Run'],
+  ['TC-007','Medium','Apply valid discount code meeting conditions','Discount applied once; total is correct','Not Run'],
+  ['TC-008','Medium','Apply invalid or expired discount code','Code rejected; total remains correct','Not Run'],
+  ['TC-009','High','Complete checkout with approved sandbox payment','One order created with correct amount and reference','Not Run'],
+  ['TC-010','High','Simulate declined payment in test environment','Failure message shown; safe retry possible','Not Run'],
+  ['TC-011','High','Repeat Place Order action in safe sandbox','No unintended duplicate order or charge','Not Run'],
+  ['TC-012','Medium','Navigate back from confirmation to summary','Order state and totals remain consistent','Not Run']
+];
+document.getElementById('download-cases').addEventListener('click', function(){ downloadCsv('ShopEase_Manual_Test_Cases.csv', caseRows); });
+document.getElementById('download-bugs').addEventListener('click', function(){ downloadCsv('ShopEase_Sample_Bug_Reports.csv', [
+  ['Bug ID','Title','Severity','Status','Steps to Reproduce','Expected Result','Illustrative Actual Result'],
+  ['DEMO-BUG-001','Cart subtotal fails to update after quantity change','High','Hypothetical demo only','Add item; open cart; change quantity from 1 to 2','Subtotal equals unit price multiplied by quantity','Example only: subtotal still reflects original quantity'],
+  ['DEMO-BUG-002','Invalid discount code accepted','Medium','Hypothetical demo only','Enter an unconfigured code and apply it','Code rejected and total unchanged','Example only: discount appears despite invalid code'],
+  ['DEMO-BUG-003','Repeated order submission creates duplicate orders','High','Hypothetical demo only','In sandbox, submit once then rapidly click Place Order again','One intended order and payment only','Example only: two order references created']
+]); });
+function updateChecklist(){ var checks = Array.from(document.querySelectorAll('[data-check]')); var done = checks.filter(function(c){return c.checked;}).length; document.getElementById('checklist-progress').textContent = done + ' of ' + checks.length + ' activities checked.'; }
+document.querySelectorAll('[data-check]').forEach(function(c){ c.addEventListener('change', updateChecklist); });
+document.getElementById('reset-checklist').addEventListener('click', function(){ document.querySelectorAll('[data-check]').forEach(function(c){c.checked=false;}); updateChecklist(); });
+</script>
+</body>
+</html>
